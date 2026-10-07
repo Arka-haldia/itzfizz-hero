@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ItzFizz - Scroll Driven Hero</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<style>*{font-family:'Space Grotesk',sans-serif}.syne{font-family:'Syne',sans-serif}body{background:#0a0a0a;color:#fff}.letter{display:inline-block}</style>
+</head>
+<body>
+<nav class="fixed top-0 w-full z-50 flex justify-between px-8 py-6 mix-blend-difference"><div class="syne tracking-[0.3em]">ITZFIZZ DIGITAL</div><div class="text-[10px] tracking-[0.4em] opacity-60">SCROLL TO EXPLORE ↓</div></nav>
+<section id="wrapper" class="relative"><div id="pin" class="h-screen w-full bg-[#0a0a0a] relative overflow-hidden flex flex-col justify-center">
+<div class="absolute top-[58%] left-0 w-full h-[18%] bg-[#141414]"></div><div id="trail" class="absolute top-[58%] left-0 h-[18%] bg-[#C8FF00] w-0"></div>
+<div class="absolute top-[67%] left-0 w-full h-[1px] opacity-20" style="background:repeating-linear-gradient(90deg,white 0 20px,transparent 20px 40px)"></div>
+<div class="relative z-10 px-8 md:px-20"><h1 id="headline" class="syne text-[12vw] md:text-[8vw] leading-none tracking-[0.18em]"></h1><p id="sub" class="mt-6 text-xs tracking-[0.4em] opacity-60">PREMIUM WEB EXPERIENCES • MOTION CRAFT</p></div>
+<div id="stats" class="absolute bottom-[8%] px-8 md:px-20 w-full z-20"><div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl">
+<div class="stat bg-[#1a1a1a] border border-white/10 p-6 rounded-2xl"><div class="text-[#C8FF00] text-4xl syne font-bold">98%</div><div class="text-[10px] mt-2 opacity-60 tracking-widest">CLIENT SATISFACTION</div></div>
+<div class="stat bg-[#C8FF00] text-black p-6 rounded-2xl"><div class="text-4xl syne font-bold">250+</div><div class="text-[10px] mt-2 font-bold tracking-widest">PROJECTS SHIPPED</div></div>
+<div class="stat bg-[#1a1a1a] border border-white/10 p-6 rounded-2xl"><div class="text-[#C8FF00] text-4xl syne font-bold">40%</div><div class="text-[10px] mt-2 opacity-60 tracking-widest">FASTER LOAD TIME</div></div>
+<div class="stat bg-[#1a1a1a] border border-white/10 p-6 rounded-2xl"><div class="text-4xl syne font-bold">6x</div><div class="text-[10px] mt-2 opacity-60 tracking-widest">GROWTH IN LEADS</div></div>
+</div></div>
+<div id="carWrap" class="absolute top-[58%] z-30" style="left:-30%"><svg width="240" height="100" viewBox="0 0 180 80"><g transform="rotate(-90 90 40)"><rect x="20" y="15" width="90" height="50" rx="16" fill="#FF4D12"/><rect x="30" y="10" width="70" height="60" rx="12" fill="#FF6B35"/><rect x="45" y="22" width="35" height="36" rx="6" fill="#111"/><circle cx="35" cy="22" r="8" fill="#222"/><circle cx="95" cy="22" r="8" fill="#222"/><circle cx="35" cy="58" r="8" fill="#222"/><circle cx="95" cy="58" r="8" fill="#222"/></g></svg></div>
+</div></section>
+<section class="h-[30vh] flex items-center justify-center opacity-30 tracking-[0.4em] text-xs">BUILT WITH GSAP + SCROLLTRIGGER + TAILWIND • BY ARKA</section>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+const text="WELCOMEITZFIZZ";document.getElementById('headline').innerHTML=text.split('').map(c=>`<span class="letter opacity-0 translate-y-10">${c}</span>`).join('');
+gsap.set('#sub',{opacity:0,y:10});gsap.set('.stat',{opacity:0,y:20});
+gsap.timeline({delay:0.2}).to('.letter',{y:0,opacity:1,duration:0.8,stagger:0.04,ease:"power4.out"}).to('#sub',{opacity:0.6,y:0,duration:0.5},'-=0.2').to('.stat',{y:0,opacity:1,duration:0.6,stagger:0.1},'-=0.3');
+gsap.timeline({scrollTrigger:{trigger:"#wrapper",start:"top top",end:"+=2000",pin:"#pin",scrub:1.2,anticipatePin:1}}).to('#carWrap',{left:"125%",ease:"none",duration:1},0).to('#trail',{width:"100%",ease:"none",duration:1},0).to('#headline',{y:-60,opacity:0.3,scale:0.96,ease:"none",duration:0.6},0.1).to('#stats',{y:-30,opacity:0,ease:"none",duration:0.4},0.2).to('.letter',{color:"#C8FF00",stagger:{each:0.04,from:"start"},duration:0.2},0.25);
+</script>
+</body>
+</html>
